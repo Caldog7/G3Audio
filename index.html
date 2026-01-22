@@ -1,28 +1,391 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 3 Audio</title>
+    <title>Grade 3 Music | SWIS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:wght@600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            text-align: center;
+        :root {
+            --swis-dark: #007435;
+            --swis-mid: #62BA46;
+            --swis-light: #C4DD88;
+            --white: #ffffff;
+            --bg: #f8faf6;
+            --text: #1a1a1a;
+            --text-muted: #5a5a5a;
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--swis-dark) 0%, var(--swis-mid) 100%);
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .school-name {
+            font-family: 'Fraunces', serif;
+            font-size: 0.85rem;
+            color: var(--swis-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--white);
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.85);
+            margin-top: 0.5rem;
+        }
+
+        /* Filter tabs */
+        .filter-container {
+            padding: 1rem 1.5rem;
+            background: var(--white);
+            border-bottom: 1px solid rgba(0,116,53,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: var(--bg);
+            color: var(--text-muted);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 2rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab:hover {
+            background: var(--swis-light);
+            color: var(--swis-dark);
+        }
+
+        .filter-tab.active {
+            background: var(--swis-dark);
+            color: var(--white);
+        }
+
+        /* Main content */
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem 3rem;
+        }
+
+        .class-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .class-header {
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--swis-dark);
+            padding: 0.75rem 0;
+            border-bottom: 2px solid var(--swis-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .class-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .class-dot.blue { background: #4A90D9; }
+        .class-dot.green { background: var(--swis-mid); }
+        .class-dot.red { background: #D94A4A; }
+        .class-dot.yellow { background: #D9C54A; }
+
+        /* Audio cards */
+        .audio-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0,116,53,0.06);
+        }
+
+        .audio-card:hover {
+            box-shadow: 0 4px 12px rgba(0,116,53,0.08);
+            transform: translateY(-1px);
+        }
+
+        .student-name {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
         audio {
             width: 100%;
-            margin-top: 20px;
+            height: 40px;
+            border-radius: 8px;
         }
+
+        audio::-webkit-media-controls-panel {
+            background: var(--bg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .footer-logo {
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            color: var(--swis-mid);
+            font-size: 1rem;
+        }
+
+        /* Hide sections when filtered */
+        .class-section.hidden {
+            display: none;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .audio-card {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .class-section:nth-child(1) .audio-card { animation-delay: 0.05s; }
+        .class-section:nth-child(2) .audio-card { animation-delay: 0.1s; }
+        .class-section:nth-child(3) .audio-card { animation-delay: 0.15s; }
+        .class-section:nth-child(4) .audio-card { animation-delay: 0.2s; }
     </style>
 </head>
 <body>
-    <h1>Grade 3B - Lambert</h1>
-    <audio controls>
-        <source src="Lambert - G3B-WAV.wav" type="audio/wav">
-        Your browser does not support the audio element.
-    </audio>
+    <header>
+        <div class="school-name">Shen Wai International School</div>
+        <h1>Grade 3 Music</h1>
+        <p class="subtitle">Tap to play your child's recording</p>
+    </header>
+
+    <div class="filter-container">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="G3B">3B</button>
+            <button class="filter-tab" data-filter="G3G">3G</button>
+            <button class="filter-tab" data-filter="G3R">3R</button>
+            <button class="filter-tab" data-filter="G3Y">3Y</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Grade 3B -->
+        <section class="class-section" data-class="G3B">
+            <h2 class="class-header">
+                <span class="class-dot blue"></span>
+                Grade 3B
+            </h2>
+            <div class="audio-card">
+                <div class="student-name">Amelia</div>
+                <audio controls preload="none">
+                    <source src="Amelia - G3B-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Junhao</div>
+                <audio controls preload="none">
+                    <source src="Junhao - G3B-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Lambert</div>
+                <audio controls preload="none">
+                    <source src="Lambert - G3B-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Stacy</div>
+                <audio controls preload="none">
+                    <source src="Stacy - G3B-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Grade 3G -->
+        <section class="class-section" data-class="G3G">
+            <h2 class="class-header">
+                <span class="class-dot green"></span>
+                Grade 3G
+            </h2>
+            <div class="audio-card">
+                <div class="student-name">Anlan</div>
+                <audio controls preload="none">
+                    <source src="Anlan - G3G-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Elvis</div>
+                <audio controls preload="none">
+                    <source src="Elvis - G3G-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Mia</div>
+                <audio controls preload="none">
+                    <source src="Mia - G3G-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Grade 3R -->
+        <section class="class-section" data-class="G3R">
+            <h2 class="class-header">
+                <span class="class-dot red"></span>
+                Grade 3R
+            </h2>
+            <div class="audio-card">
+                <div class="student-name">Bennett</div>
+                <audio controls preload="none">
+                    <source src="Bennett - G3R-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+            <div class="audio-card">
+                <div class="student-name">Joyce</div>
+                <audio controls preload="none">
+                    <source src="Joyce - G3R-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Grade 3Y -->
+        <section class="class-section" data-class="G3Y">
+            <h2 class="class-header">
+                <span class="class-dot yellow"></span>
+                Grade 3Y
+            </h2>
+            <div class="audio-card">
+                <div class="student-name">Max</div>
+                <audio controls preload="none">
+                    <source src="Max - G3Y-WAV.wav" type="audio/wav">
+                </audio>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">SWIS</div>
+        <p>Shen Wai International School</p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const tabs = document.querySelectorAll('.filter-tab');
+        const sections = document.querySelectorAll('.class-section');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const filter = tab.dataset.filter;
+
+                // Show/hide sections
+                sections.forEach(section => {
+                    if (filter === 'all' || section.dataset.class === filter) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Pause other audio when one starts playing
+        const audioElements = document.querySelectorAll('audio');
+        audioElements.forEach(audio => {
+            audio.addEventListener('play', () => {
+                audioElements.forEach(other => {
+                    if (other !== audio) {
+                        other.pause();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
