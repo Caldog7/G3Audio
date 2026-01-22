@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Grade 3 Music | SWIS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +27,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -30,6 +36,7 @@
             color: var(--text);
             min-height: 100vh;
             line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
         }
 
         /* Header */
@@ -274,25 +281,25 @@
             </h2>
             <div class="audio-card">
                 <div class="student-name">Amelia</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Amelia - G3B-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Junhao</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Junhao - G3B-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Lambert</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Lambert - G3B-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Stacy</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Stacy - G3B-WAV.wav" type="audio/wav">
                 </audio>
             </div>
@@ -306,19 +313,19 @@
             </h2>
             <div class="audio-card">
                 <div class="student-name">Anlan</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Anlan - G3G-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Elvis</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Elvis - G3G-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Mia</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Mia - G3G-WAV.wav" type="audio/wav">
                 </audio>
             </div>
@@ -332,13 +339,13 @@
             </h2>
             <div class="audio-card">
                 <div class="student-name">Bennett</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Bennett - G3R-WAV.wav" type="audio/wav">
                 </audio>
             </div>
             <div class="audio-card">
                 <div class="student-name">Joyce</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Joyce - G3R-WAV.wav" type="audio/wav">
                 </audio>
             </div>
@@ -352,7 +359,7 @@
             </h2>
             <div class="audio-card">
                 <div class="student-name">Max</div>
-                <audio controls preload="none">
+                <audio controls preload="none" playsinline>
                     <source src="Max - G3Y-WAV.wav" type="audio/wav">
                 </audio>
             </div>
